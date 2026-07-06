@@ -1,203 +1,490 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Eleições Presidenciais.</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portal Eleições 2026 | Cobertura Completa e Resultados</title>
+  <meta name="description" content="Acompanhe as últimas notícias sobre as eleições, debates, propostas dos candidatos, intenções de voto e o cenário político nacional.">
+ 
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗳️</text></svg>">
 
-    <style>
-        /* DECORAÇÃO DO FUNDO: Cores do Brasil em degradê suave */
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135px, #206A3A 0%, #FFDF00 50%, #002776 100%);
-            background-attachment: fixed;
-            color: #333;
-        }
+  <style>
+    /* RESET VARIÁVEIS E CONFIGURAÇÕES GERAIS */
+    :root {
+      --primary-color: #0d47a1;
+      --primary-dark: #0a3161;
+      --secondary-color: #1565c0;
+      --accent-color: #b71c1c;
+      --bg-color: #f5f7fa;
+      --text-color: #263238;
+      --text-light: #ffffff;
+      --card-bg: #ffffff;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --transition: all 0.3s ease;
+    }
 
-        .container {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 40px 20px;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        /* DECORAÇÃO DO TÍTULO: Estilo Urna Eletrônica */
-        .titulo {
-            font-size: 2.8em;
-            margin-bottom: 10px;
-            padding: 15px 40px;
-            border: 5px solid #002776;
-            border-radius: 15px;
-            background-color: #f0f0f0;
-            color: #111;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-        }
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
 
-        .subtitulo-blog {
-            color: #fff;
-            font-size: 1.2em;
-            font-weight: bold;
-            background-color: rgba(0, 0, 0, 0.6);
-            padding: 8px 20px;
-            border-radius: 20px;
-            margin-bottom: 30px;
-        }
+    body {
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+    }
 
-        .texto-introducao {
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            margin-bottom: 30px;
-        }
+    /* HEADER */
+    header {
+      background: var(--primary-color);
+      color: var(--text-light);
+      padding: 15px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
 
-        /* DECORAÇÃO DOS CARDS: Cores destacadas e sombra */
-        .card {
-            border: 3px solid #002776;
-            padding: 20px;
-            width: 600px;
-            max-width: 95%;
-            margin-top: 25px;
-            border-radius: 15px;
-            background-color: white;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.25);
-            border-top: 8px solid #206A3A; /* Faixa verde no topo */
-            transition: transform 0.3s;
-        }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
 
-        .card:hover {
-            transform: translateY(-5px); /* Card sobe de leve ao passar o mouse */
-        }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-        .card h3 {
-            margin-top: 0;
-            font-size: 1.8em;
-            color: #002776;
-            border-bottom: 2px solid #FFDF00;
-            padding-bottom: 5px;
-        }
+    nav {
+      display: flex;
+      gap: 20px;
+    }
 
-        .conteudo-flex {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 20px 0;
-            text-align: left;
-        }
+    nav a {
+      color: var(--text-light);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: var(--transition);
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
 
-        .biografia {
-            font-size: 14px;
-            color: #333;
-            line-height: 1.5;
-            margin: 0;
-            text-align: justify;
-            flex: 1;
-        }
+    nav a:hover, nav a:focus {
+      background: rgba(255, 255, 255, 0.15);
+      outline: none;
+    }
 
-        /* DECORAÇÃO DOS BOTÕES DE VOTO */
-        .container-botoes {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 15px;
-        }
+    /* BREAKING NEWS */
+    .breaking {
+      background: var(--accent-color);
+      color: var(--text-light);
+      padding: 12px 20px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: inset 0 -2px 5px rgba(0,0,0,0.1);
+    }
 
-        button {
-            font-size: 18px;
-            cursor: pointer;
-            padding: 10px 25px;
-            border: 2px solid #ccc;
-            border-radius: 25px;
-            background-color: #fff;
-            font-weight: bold;
-            transition: all 0.2s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
+    /* LAYOUT CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      display: grid;
+      grid-template-columns: 2.7fr 1fr;
+      gap: 30px;
+      padding: 0 20px;
+    }
 
-        button:hover {
-            transform: scale(1.08);
-        }
+    /* MAIN NEWS */
+    .main-news {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
 
-        .btn-up:hover {
-            background-color: #d1e7dd;
-            border-color: #198754;
-            color: #198754;
-        }
+    .main-news h1 {
+      font-size: 2.2rem;
+      line-height: 1.2;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+      font-weight: 800;
+    }
 
-        .btn-down:hover {
-            background-color: #f8d7da;
-            border-color: #dc3545;
-            color: #dc3545;
-        }
-    </style>
+    .main-news .meta-info {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .main-news p {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .img-container {
+      background: #e0e0e0;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 20px 0;
+      aspect-ratio: 16 / 9;
+    }
+
+    .main-news img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .main-news img:hover {
+      transform: scale(1.02);
+    }
+
+    /* CARDS GRID */
+    .cards {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+      border-top: 4px solid var(--secondary-color);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    }
+
+    .card h3 {
+      color: var(--secondary-color);
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: #555;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .box {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+    }
+
+    .box h3 {
+      margin-bottom: 15px;
+      color: var(--primary-color);
+      font-size: 1.25rem;
+      border-bottom: 2px solid #edf0ee;
+      padding-bottom: 8px;
+    }
+
+    .box ul {
+      list-style: none;
+    }
+
+    .box ul li {
+      padding: 10px 0;
+      border-bottom: 1px dashed #edf0ee;
+      font-size: 0.95rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .box ul li:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .badge-positive {
+      background: #e3f2fd;
+      color: #0d47a1;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    /* ESTILOS ESPECÍFICOS DA ENQUETE */
+    .poll-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      background: #edf0ee;
+      border: 1px solid #c8d1cc;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 500;
+      text-align: left;
+      transition: var(--transition);
+    }
+
+    .poll-btn:hover {
+      background: var(--secondary-color);
+      color: white;
+      border-color: var(--secondary-color);
+    }
+
+    .bar-bg {
+      background: #e0e0e0;
+      border-radius: 4px;
+      height: 10px;
+      width: 100%;
+      overflow: hidden;
+      margin-top: 5px;
+    }
+
+    .bar-fill {
+      background: var(--primary-color);
+      height: 100%;
+      width: 0%;
+      transition: width 0.6s ease;
+    }
+
+    .result-bar-container {
+      margin-top: 12px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: var(--primary-dark);
+      color: var(--text-light);
+      margin-top: 50px;
+      font-size: 0.9rem;
+    }
+
+    /* RESPONSIVIDADE ACESSÍVEL */
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+      .main-news h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .topbar {
+        flex-direction: column;
+        text-align: center;
+      }
+      nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <div class="container">
+<header>
+  <div class="topbar">
+    <div class="logo" aria-label="Portal Eleições Home">🗳️ Portal Eleições</div>
+    <nav aria-label="Navegação principal">
+      <a href="#">Início</a>
+      <a href="#cenario">Cenário</a>
+      <a href="#propostas">Propostas</a>
+      <a href="#tecnologia">Tecnologia</a>
+      <a href="#calendario">Calendário</a>
+    </nav>
+  </div>
+</header>
 
-        <h2 class="titulo">🗳️ ELEIÇÕES BRASIL</h2>
+<div class="breaking" role="alert">
+  <strong>URGENTE:</strong> TSE confirma datas oficiais e regras para os debates eleitorais de 2026
+</div>
 
-        <div class="subtitulo-blog">Meu primeiro post por Joias Do Prado</div>
+<div class="container">
 
-        <div class="texto-introducao">
-            <p>Vou compartilhar sobre candidatos à Presidência da República.</p>
-            <p>
-                Os candidatos à Presidência da República costumam apresentar propostas voltadas para áreas como economia,
-                saúde, educação, segurança pública e geração de empregos. É fundamental que os cidadãos analisem as propostas e o histórico dos candidatos antes de votar.
-            </p>
+  <main>
+    <article class="main-news">
+      <div class="meta-info">Publicado em: 2026 • Atualizado recentemente</div>
+      <h1>A importância do voto consciente para o futuro do país</h1>
+      <p>
+        As eleições representam o pilar fundamental da democracia. É o momento em que os cidadãos exercem sua soberania para escolher os representantes que guiarão as políticas públicas, a economia e as decisões sociais nos próximos anos.
+      </p>
+
+      <div class="img-container">
+        <img src="https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=1200&q=80"
+             alt="Pessoas em uma fila de votação organizada e cidadania"
+             loading="lazy"
+             width="1200"
+             height="675" />
+      </div>
+
+      <p>
+        Cientistas políticos alertam que o acompanhamento das propostas, a verificação de notícias falsas (fake news) e o debate saudável sobre os planos de governo são etapas cruciais para que o eleitor faça uma escolha informada e responsável.
+      </p>
+    </article>
+
+    <section id="cenario" class="cards" aria-label="Notícias Rápidas">
+      <div id="propostas" class="card">
+        <h3>Propostas em Foco</h3>
+        <p>Candidatos apresentam planos voltados para a educação básica, saúde pública e segurança de dados.</p>
+      </div>
+
+      <div id="tecnologia" class="card">
+        <h3>Urnas Eletrônicas</h3>
+        <p>Segurança do sistema eleitoral passa por novas auditorias públicas e testes abertos de segurança.</p>
+      </div>
+
+      <div id="calendario" class="card">
+        <h3>Prazos Importantes</h3>
+        <p>Fique atento às datas de regularização do título de eleitor e transferência de domicílio eleitoral.</p>
+      </div>
+
+      <div class="card">
+        <h3>Voto do Jovem</h3>
+        <p>Engajamento de jovens de 16 e 17 anos registra índice expressivo de novas inscrições neste ano.</p>
+      </div>
+    </section>
+  </main>
+
+  <aside class="sidebar" aria-label="Informações Complementares">
+    <section class="box">
+      <h3>Enquete do Dia</h3>
+      <p style="font-size: 0.95rem; margin-bottom: 15px; font-weight: 600;">
+        Qual área deve ser a maior prioridade dos debates eleitorais deste ano?
+      </p>
+     
+      <div id="poll-options">
+        <button class="poll-btn" onclick="votar('saude')">🏥 Saúde e Saneamento</button>
+        <button class="poll-btn" onclick="votar('educa')">📚 Educação e Tecnologia</button>
+        <button class="poll-btn" onclick="votar('econo')">💼 Empregos e Economia</button>
+      </div>
+
+      <div id="poll-results" style="display: none;">
+        <div class="result-bar-container">
+          <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+            <span>🏥 Saúde</span> <span id="res-saude">0%</span>
+          </div>
+          <div class="bar-bg"><div id="bar-saude" class="bar-fill"></div></div>
+        </div>
+       
+        <div class="result-bar-container">
+          <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+            <span>📚 Educação</span> <span id="res-educa">0%</span>
+          </div>
+          <div class="bar-bg"><div id="bar-educa" class="bar-fill"></div></div>
         </div>
 
-        <div class="card">
-            <h3>Lula</h3>
-            <div class="conteudo-flex">
-                <p class="biografia">Luiz Inácio Lula da Silva nasceu em Pernambuco e mudou-se jovem para São Paulo. Foi metalúrgico, líder sindical e um dos fundadores do Partido dos Trabalhadores (PT). Exerceu a Presidência do Brasil em dois mandatos sucessivos (2003-2010) e retornou ao cargo após vencer as eleições presidenciais de 2022.</p>
-            </div>
-            <div class="container-botoes">
-                <button class="btn-up" onclick="votar('lula', 'Up')">👍 <span id="lulaUp">0</span></button>
-                <button class="btn-down" onclick="votar('lula', 'Down')">👎 <span id="lulaDown">0</span></button>
-            </div>
+        <div class="result-bar-container">
+          <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+            <span>💼 Economia</span> <span id="res-econo">0%</span>
+          </div>
+          <div class="bar-bg"><div id="bar-econo" class="bar-fill"></div></div>
         </div>
+       
+        <p style="font-size: 0.8rem; color: #666; margin-top: 15px; text-align: center;">Obrigado pela sua participação!</p>
+      </div>
+    </section>
 
-        <div class="card">
-            <h3>Bolsonaro</h3>
-            <div class="conteudo-flex">
-                <p class="biografia">Jair Messias Bolsonaro nasceu no interior de São Paulo e seguiu carreira militar, chegando à patente de Capitão do Exército. Entrou para a política no Rio de Janeiro, onde atuou como vereador e deputado federal por sete mandatos. Foi eleito Presidente da República, governando o Brasil de 2019 a 2022.</p>
-            </div>
-            <div class="container-botoes">
-                <button class="btn-up" onclick="votar('bolso', 'Up')">👍 <span id="bolsoUp">0</span></button>
-                <button class="btn-down" onclick="votar('bolso', 'Down')">👎 <span id="bolsoDown">0</span></button>
-            </div>
-        </div>
+    <section class="box">
+      <h3>Destaques da Semana</h3>
+      <ul>
+        <li><span>🗓️ Calendário das Eleições 2026</span></li>
+        <li><span>🎤 Entrevistas com Candidatos</span></li>
+        <li><span>🔍 Checagem de Fatos (Fato ou Fake)</span></li>
+        <li><span>📊 Análise de Cenários Políticos</span></li>
+      </ul>
+    </section>
 
-        <div class="card">
-            <h3>Marina Silva</h3>
-            <div class="conteudo-flex">
-                <p class="biografia">Maria Osmarina da Silva nasceu no Acre, onde trabalhou na juventude como seringueira e se alfabetizou na adolescência. Formou-se em História, tornando-se professora, ambientalista e defensora da Amazônia. Foi vereadora, deputada estadual, senadora, ministra do Meio Ambiente e candidata à Presidência.</p>
-            </div>
-            <div class="container-botoes">
-                <button class="btn-up" onclick="votar('marina', 'Up')">👍 <span id="marinaUp">0</span></button>
-                <button class="btn-down" onclick="votar('marina', 'Down')">👎 <span id="marinaDown">0</span></button>
-            </div>
-        </div>
+    <section class="box">
+      <h3>Participação Estimada</h3>
+      <ul>
+        <li><span>Sudeste</span> <span class="badge-positive">82%</span></li>
+        <li><span>Nordeste</span> <span class="badge-positive">85%</span></li>
+        <li><span>Sul</span> <span class="badge-positive">80%</span></li>
+        <li><span>Centro-Oeste / Norte</span> <span class="badge-positive">79%</span></li>
+      </ul>
+    </section>
+  </aside>
 
-    </div>
+</div>
 
-    <script>
-        function votar(candidato, tipo) {
-            const idElemento = candidato + tipo;
-            const elemento = document.getElementById(idElemento);
-            if (elemento) {
-                let votosAtuais = parseInt(elemento.innerText);
-                elemento.innerText = votosAtuais + 1;
-            }
-        }
-    </script>
+<footer>
+  <p>&copy; 2026 Portal Eleições - Informação com transparência e cidadania. Todos os direitos reservados.</p>
+</footer>
+
+<script>
+  // Banco de dados simulado inicial para a enquete eleitoral
+  let votos = {
+    saude: 45,
+    educa: 35,
+    econo: 20
+  };
+
+  function votar(opcao) {
+    // Registra o clique do usuário
+    votos[opcao]++;
+   
+    // Calcula o total geral de participações
+    const totalVotos = votos.saude + votos.educa + votos.econo;
+   
+    // Transforma os votos em valores percentuais inteiros
+    const pctSaude = Math.round((votos.saude / totalVotos) * 100);
+    const pctEduca = Math.round((votos.educa / totalVotos) * 100);
+    const pctEcono = Math.round((votos.econo / totalVotos) * 100);
+   
+    // Insere o texto das porcentagens nas tags corretas
+    document.getElementById('res-saude').innerText = pctSaude + '%';
+    document.getElementById('res-educa').innerText = pctEduca + '%';
+    document.getElementById('res-econo').innerText = pctEcono + '%';
+   
+    // Atualiza a largura visual (preenchimento) de cada barra de progresso
+    document.getElementById('bar-saude').style.width = pctSaude + '%';
+    document.getElementById('bar-educa').style.width = pctEduca + '%';
+    document.getElementById('bar-econo').style.width = pctEcono + '%';
+   
+    // Alterna a visualização dos blocos: esconde os botões e exibe os resultados
+    document.getElementById('poll-options').style.display = 'none';
+    document.getElementById('poll-results').style.display = 'block';
+  }
+</script>
 
 </body>
 </html>
