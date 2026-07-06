@@ -60,7 +60,7 @@
         .card {
             border: 3px solid #002776;
             padding: 20px;
-            width: 500px;
+            width: 600px;
             max-width: 95%;
             margin-top: 25px;
             border-radius: 15px;
@@ -82,25 +82,35 @@
             padding-bottom: 5px;
         }
 
-        /* ALINHAMENTO: Coloca a Foto e a Biografia Lado a Lado */
+        /* ALINHAMENTO: Coloca a Foto, Biografia e Paisagem Lado a Lado */
         .conteudo-flex {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
             margin: 20px 0;
             text-align: left;
         }
 
-        /* DECORAÇÃO DA FOTO */
+        /* DECORAÇÃO DA FOTO DO CANDIDATO */
         .foto-moldura {
             width: 100px;
             height: 130px;
             object-fit: cover;
             border-radius: 8px;
             border: 3px solid #002776;
-            background-color: #e0e0e0;
             box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
             flex-shrink: 0; /* Impede a imagem de esmagar */
+        }
+
+        /* DECORAÇÃO DA FOTO DE PAISAGEM BRASILEIRA */
+        .foto-paisagem {
+            width: 110px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 3px solid #206A3A;
+            box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            flex-shrink: 0;
         }
 
         .biografia {
@@ -109,6 +119,7 @@
             line-height: 1.5;
             margin: 0;
             text-align: justify;
+            flex: 1;
         }
 
         /* DECORAÇÃO DOS BOTÕES DE VOTO */
@@ -168,8 +179,9 @@
         <div class="card">
             <h3>Lula</h3>
             <div class="conteudo-flex">
-                <img class="foto-moldura" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=60" alt="Foto Lula">
+                <img class="foto-moldura" src="http://googleusercontent.com/image_collection/image_retrieval/139674325367726941_0" alt="Foto Lula">
                 <p class="biografia">Luiz Inácio Lula da Silva nasceu em Pernambuco e mudou-se jovem para São Paulo. Foi metalúrgico, líder sindical e um dos fundadores do Partido dos Trabalhadores (PT). Exerceu a Presidência do Brasil em dois mandatos sucessivos (2003-2010) e retornou ao cargo após vencer as eleições presidenciais de 2022.</p>
+                <img class="foto-paisagem" src="http://googleusercontent.com/image_collection/image_retrieval/12077372400952606354_0" alt="Região Urbana Brasil">
             </div>
             <div class="container-botoes">
                 <button class="btn-up" onclick="votar('lula', 'Up')">👍 <span id="lulaUp">0</span></button>
@@ -180,8 +192,9 @@
         <div class="card">
             <h3>Bolsonaro</h3>
             <div class="conteudo-flex">
-                <img class="foto-moldura" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=60" alt="Foto Bolsonaro">
+                <img class="foto-moldura" src="http://googleusercontent.com/image_collection/image_retrieval/9101545376657861038_0" alt="Foto Bolsonaro">
                 <p class="biografia">Jair Messias Bolsonaro nasceu no interior de São Paulo e seguiu carreira militar, chegando à patente de Capitão do Exército. Entrou para a política no Rio de Janeiro, onde atuou como vereador e deputado federal por sete mandatos. Foi eleito Presidente da República, governando o Brasil de 2019 a 2022.</p>
+                <img class="foto-paisagem" src="http://googleusercontent.com/image_collection/image_retrieval/12077372400952606354_2" alt="Região Urbana Brasil">
             </div>
             <div class="container-botoes">
                 <button class="btn-up" onclick="votar('bolso', 'Up')">👍 <span id="bolsoUp">0</span></button>
@@ -192,36 +205,10 @@
         <div class="card">
             <h3>Marina Silva</h3>
             <div class="conteudo-flex">
-                <img class="foto-moldura" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=60" alt="Foto Marina Silva">
+                <img class="foto-moldura" src="http://googleusercontent.com/image_collection/image_retrieval/8199267258873541149_0" alt="Foto Marina Silva">
                 <p class="biografia">Maria Osmarina da Silva nasceu no Acre, onde trabalhou na juventude como seringueira e se alfabetizou na adolescência. Formou-se em História, tornando-se professora, ambientalista e defensora da Amazônia. Foi vereadora, deputada estadual, senadora, ministra do Meio Ambiente e candidata à Presidência.</p>
+                <img class="foto-paisagem" src="http://googleusercontent.com/image_collection/image_retrieval/11481673006823529329_0" alt="Região Rural Brasil">
             </div>
             <div class="container-botoes">
                 <button class="btn-up" onclick="votar('marina', 'Up')">👍 <span id="marinaUp">0</span></button>
-                <button class="btn-down" onclick="votar('marina', 'Down')">👎 <span id="marinaDown">0</span></button>
-            </div>
-        </div>
-
-    </div>
-
-    <script>
-        // Sistema de votação limpo e sem conflitos
-        const candidatosVotados = {};
-
-        function votar(candidato, tipo) {
-            if (candidatosVotados[candidato]) {
-                alert("Você já votou neste candidato!");
-                return;
-            }
-
-            const idElemento = candidato + tipo;
-            const el = document.getElementById(idElemento);
-            
-            el.textContent = Number(el.textContent) + 1;
-
-            candidatosVotados[candidato] = true;
-        }
-    </script>
-
-</body>
-
-</html>
+                <button class="btn-down" onclick="votar('marina', 'Down')">👎 <span id="
