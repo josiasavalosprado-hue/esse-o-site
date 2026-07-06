@@ -54,7 +54,6 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             margin-bottom: 30px;
-            max-width: 600px;
         }
 
         /* DECORAÇÃO DOS CARDS: Cores destacadas e sombra */
@@ -69,7 +68,6 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.25);
             border-top: 8px solid #206A3A; /* Faixa verde no topo */
             transition: transform 0.3s;
-            box-sizing: border-box;
         }
 
         .card:hover {
@@ -84,43 +82,12 @@
             padding-bottom: 5px;
         }
 
-        /* ALINHAMENTO: Coloca a Foto, Biografia e Paisagem Lado a Lado */
         .conteudo-flex {
             display: flex;
             align-items: center;
             gap: 15px;
             margin: 20px 0;
             text-align: left;
-        }
-
-        /* Responsividade para telas menores */
-        @media (max-width: 600px) {
-            .conteudo-flex {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-
-        /* DECORAÇÃO DA FOTO DO CANDIDATO */
-        .foto-moldura {
-            width: 100px;
-            height: 130px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 3px solid #002776;
-            box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
-            flex-shrink: 0; /* Impede a imagem de esmagar */
-        }
-
-        /* DECORAÇÃO DA FOTO DE PAISAGEM BRASILEIRA */
-        .foto-paisagem {
-            width: 110px;
-            height: 130px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 3px solid #206A3A;
-            box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
-            flex-shrink: 0;
         }
 
         .biografia {
@@ -189,9 +156,7 @@
         <div class="card">
             <h3>Lula</h3>
             <div class="conteudo-flex">
-                <img class="foto-moldura" src="http://googleusercontent.com/image_collection/image_retrieval/139674325367726941_0" alt="Foto Lula">
                 <p class="biografia">Luiz Inácio Lula da Silva nasceu em Pernambuco e mudou-se jovem para São Paulo. Foi metalúrgico, líder sindical e um dos fundadores do Partido dos Trabalhadores (PT). Exerceu a Presidência do Brasil em dois mandatos sucessivos (2003-2010) e retornou ao cargo após vencer as eleições presidenciais de 2022.</p>
-                <img class="foto-paisagem" src="http://googleusercontent.com/image_collection/image_retrieval/12077372400952606354_0" alt="Região Urbana Brasil">
             </div>
             <div class="container-botoes">
                 <button class="btn-up" onclick="votar('lula', 'Up')">👍 <span id="lulaUp">0</span></button>
@@ -202,9 +167,7 @@
         <div class="card">
             <h3>Bolsonaro</h3>
             <div class="conteudo-flex">
-                <img class="foto-moldura" src="http://googleusercontent.com/image_collection/image_retrieval/9101545376657861038_0" alt="Foto Bolsonaro">
                 <p class="biografia">Jair Messias Bolsonaro nasceu no interior de São Paulo e seguiu carreira militar, chegando à patente de Capitão do Exército. Entrou para a política no Rio de Janeiro, onde atuou como vereador e deputado federal por sete mandatos. Foi eleito Presidente da República, governando o Brasil de 2019 a 2022.</p>
-                <img class="foto-paisagem" src="http://googleusercontent.com/image_collection/image_retrieval/12077372400952606354_2" alt="Região Urbana Brasil">
             </div>
             <div class="container-botoes">
                 <button class="btn-up" onclick="votar('bolso', 'Up')">👍 <span id="bolsoUp">0</span></button>
@@ -215,9 +178,7 @@
         <div class="card">
             <h3>Marina Silva</h3>
             <div class="conteudo-flex">
-                <img class="foto-moldura" src="http://googleusercontent.com/image_collection/image_retrieval/8199267258873541149_0" alt="Foto Marina Silva">
                 <p class="biografia">Maria Osmarina da Silva nasceu no Acre, onde trabalhou na juventude como seringueira e se alfabetizou na adolescência. Formou-se em História, tornando-se professora, ambientalista e defensora da Amazônia. Foi vereadora, deputada estadual, senadora, ministra do Meio Ambiente e candidata à Presidência.</p>
-                <img class="foto-paisagem" src="http://googleusercontent.com/image_collection/image_retrieval/11481673006823529329_0" alt="Região Rural Brasil">
             </div>
             <div class="container-botoes">
                 <button class="btn-up" onclick="votar('marina', 'Up')">👍 <span id="marinaUp">0</span></button>
@@ -229,12 +190,9 @@
 
     <script>
         function votar(candidato, tipo) {
-            // Monta o ID correto do elemento correspondente (ex: lulaUp, bolsoDown)
             const idElemento = candidato + tipo;
             const elemento = document.getElementById(idElemento);
-            
             if (elemento) {
-                // Pega o valor atual, converte para número, soma 1 e atualiza na tela
                 let votosAtuais = parseInt(elemento.innerText);
                 elemento.innerText = votosAtuais + 1;
             }
