@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog de Política</title>
+    <title>Blog Eleições Presidenciais</title>
 
     <style>
+        /* DECORAÇÃO DO FUNDO: Cores do Brasil em degradê suave */
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            /* Fundo cinza claro com um detalhe sutil em verde e amarelo no topo */
-            background: linear-gradient(to bottom, #e3f2fd, #f9f9f9 300px);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135px, #206A3A 0%, #FFDF00 50%, #002776 100%);
+            background-attachment: fixed;
             color: #333;
         }
 
@@ -21,97 +22,130 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
+        /* DECORAÇÃO DO TÍTULO: Estilo Urna Eletrônica */
         .titulo {
-            font-size: 2.5em;
-            margin: 20px 0;
+            font-size: 2.8em;
+            margin-bottom: 10px;
             padding: 15px 40px;
-            /* Borda decorativa remetendo a eleições/Brasil */
-            border: 4px solid #183C63;
+            border: 5px solid #002776;
             border-radius: 15px;
-            background-color: #ffffff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            background-color: #f0f0f0;
+            color: #111;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
-        p {
-            max-width: 600px;
-            line-height: 1.6;
+        .subtitulo-blog {
+            color: #fff;
+            font-size: 1.2em;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 8px 20px;
+            border-radius: 20px;
+            margin-bottom: 30px;
         }
 
-        /* Estilização dos Cards dos Candidatos */
-        .card {
-            border: 2px solid #183C63; /* Borda azul destacada */
-            padding: 20px;
-            width: 450px; /* Aumentado para caber a foto e o texto lado a lado */
-            max-width: 90%;
-            margin-top: 25px;
-            border-radius: 12px;
+        .texto-introducao {
             background-color: white;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-            /* Pequena faixa verde no topo do card como decoração */
-            border-top: 6px solid #198754; 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+        }
+
+        /* DECORAÇÃO DOS CARDS: Cores destacadas e sombra */
+        .card {
+            border: 3px solid #002776;
+            padding: 20px;
+            width: 500px;
+            max-width: 95%;
+            margin-top: 25px;
+            border-radius: 15px;
+            background-color: white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+            border-top: 8px solid #206A3A; /* Faixa verde no topo */
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* Card sobe de leve ao passar o mouse */
         }
 
         .card h3 {
             margin-top: 0;
-            color: #183C63;
-            font-size: 1.5em;
+            font-size: 1.8em;
+            color: #002776;
+            border-bottom: 2px solid #FFDF00;
+            padding-bottom: 5px;
         }
 
-        /* Container para alinhar Foto e Biografia lado a lado */
-        .conteudo-candidato {
+        /* ALINHAMENTO: Coloca a Foto e a Biografia Lado a Lado */
+        .conteudo-flex {
             display: flex;
             align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 20px;
+            margin: 20px 0;
+            text-align: left;
         }
 
-        /* Estilo da Foto do Candidato */
-        .foto-candidato {
-            width: 90px;
-            height: 110px;
+        /* DECORAÇÃO DA FOTO */
+        .foto-moldura {
+            width: 100px;
+            height: 130px;
             object-fit: cover;
-            border-radius: 6px;
-            border: 2px solid #ccc;
-            background-color: #eee;
+            border-radius: 8px;
+            border: 3px solid #002776;
+            background-color: #e0e0e0;
+            box-shadow: 3px 3px 6px rgba(0,0,0,0.2);
+            flex-shrink: 0; /* Impede a imagem de esmagar */
         }
 
         .biografia {
             font-size: 14px;
-            color: #444;
+            color: #333;
+            line-height: 1.5;
             margin: 0;
             text-align: justify;
-            flex: 1; /* Faz o texto ocupar o espaço restante */
         }
 
-        /* Botões de Votação */
-        .botoes-voto {
+        /* DECORAÇÃO DOS BOTÕES DE VOTO */
+        .container-botoes {
             display: flex;
             justify-content: center;
-            gap: 10px;
+            gap: 15px;
+            margin-top: 15px;
         }
 
         button {
             font-size: 18px;
             cursor: pointer;
-            padding: 8px 20px;
-            border: 1px solid #ccc;
-            border-radius: 20px; /* Botões mais arredondados */
-            background-color: #f8f9fa;
+            padding: 10px 25px;
+            border: 2px solid #ccc;
+            border-radius: 25px;
+            background-color: #fff;
+            font-weight: bold;
             transition: all 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
         button:hover {
-            background-color: #e2e6ea;
-            transform: scale(1.05); /* Efeito de crescer levemente ao passar o mouse */
+            transform: scale(1.08);
         }
 
-        /* Cores específicas para os botões */
-        .btn-up:hover { background-color: #d1e7dd; border-color: #badbcc; }
-        .btn-down:hover { background-color: #f8d7da; border-color: #f5c2c7; }
+        .btn-up:hover {
+            background-color: #d1e7dd;
+            border-color: #198754;
+            color: #198754;
+        }
 
+        .btn-down:hover {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            color: #dc3545;
+        }
     </style>
 </head>
 
@@ -119,24 +153,25 @@
 
     <div class="container">
 
-        <h2 class="titulo">🗳️ Meu Primeiro Post</h2>
+        <h2 class="titulo">🗳️ ELEIÇÕES BRASIL</h2>
 
-        <p>Vou compartilhar sobre candidatos à Presidência da República.</p>
+        <div class="subtitulo-blog">Meu primeiro post por Joias Do Prado</div>
 
-        <p><strong>Joias Do Prado</strong></p>
-
-        <p>
-            Os candidatos à Presidência da República costumam apresentar propostas voltadas para áreas como economia,
-            saúde, educação, segurança pública e geração de empregos. É fundamental que os cidadãos analisem as propostas e o histórico dos candidatos antes de votar.
-        </p>
+        <div class="texto-introducao">
+            <p>Vou compartilhar sobre candidatos à Presidência da República.</p>
+            <p>
+                Os candidatos à Presidência da República costumam apresentar propostas voltadas para áreas como economia,
+                saúde, educação, segurança pública e geração de empregos. É fundamental que os cidadãos analisem as propostas e o histórico dos candidatos antes de votar.
+            </p>
+        </div>
 
         <div class="card">
             <h3>Lula</h3>
-            <div class="conteudo-candidato">
-                <img class="foto-candidato" src="https://via.placeholder.com/90x110?text=Lula" alt="Foto de Lula">
+            <div class="conteudo-flex">
+                <img class="foto-moldura" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=60" alt="Foto Lula">
                 <p class="biografia">Luiz Inácio Lula da Silva nasceu em Pernambuco e mudou-se jovem para São Paulo. Foi metalúrgico, líder sindical e um dos fundadores do Partido dos Trabalhadores (PT). Exerceu a Presidência do Brasil em dois mandatos sucessivos (2003-2010) e retornou ao cargo após vencer as eleições presidenciais de 2022.</p>
             </div>
-            <div class="botoes-voto">
+            <div class="container-botoes">
                 <button class="btn-up" onclick="votar('lula', 'Up')">👍 <span id="lulaUp">0</span></button>
                 <button class="btn-down" onclick="votar('lula', 'Down')">👎 <span id="lulaDown">0</span></button>
             </div>
@@ -144,11 +179,11 @@
 
         <div class="card">
             <h3>Bolsonaro</h3>
-            <div class="conteudo-candidato">
-                <img class="foto-candidato" src="https://via.placeholder.com/90x110?text=Bolsonaro" alt="Foto de Bolsonaro">
+            <div class="conteudo-flex">
+                <img class="foto-moldura" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=60" alt="Foto Bolsonaro">
                 <p class="biografia">Jair Messias Bolsonaro nasceu no interior de São Paulo e seguiu carreira militar, chegando à patente de Capitão do Exército. Entrou para a política no Rio de Janeiro, onde atuou como vereador e deputado federal por sete mandatos. Foi eleito Presidente da República, governando o Brasil de 2019 a 2022.</p>
             </div>
-            <div class="botoes-voto">
+            <div class="container-botoes">
                 <button class="btn-up" onclick="votar('bolso', 'Up')">👍 <span id="bolsoUp">0</span></button>
                 <button class="btn-down" onclick="votar('bolso', 'Down')">👎 <span id="bolsoDown">0</span></button>
             </div>
@@ -156,11 +191,11 @@
 
         <div class="card">
             <h3>Marina Silva</h3>
-            <div class="conteudo-candidato">
-                <img class="foto-candidato" src="https://via.placeholder.com/90x110?text=Marina" alt="Foto de Marina Silva">
+            <div class="conteudo-flex">
+                <img class="foto-moldura" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&auto=format&fit=crop&q=60" alt="Foto Marina Silva">
                 <p class="biografia">Maria Osmarina da Silva nasceu no Acre, onde trabalhou na juventude como seringueira e se alfabetizou na adolescência. Formou-se em História, tornando-se professora, ambientalista e defensora da Amazônia. Foi vereadora, deputada estadual, senadora, ministra do Meio Ambiente e candidata à Presidência.</p>
             </div>
-            <div class="botoes-voto">
+            <div class="container-botoes">
                 <button class="btn-up" onclick="votar('marina', 'Up')">👍 <span id="marinaUp">0</span></button>
                 <button class="btn-down" onclick="votar('marina', 'Down')">👎 <span id="marinaDown">0</span></button>
             </div>
@@ -169,7 +204,7 @@
     </div>
 
     <script>
-        // Sistema de votação corrigido (Apenas um voto por candidato)
+        // Sistema de votação limpo e sem conflitos
         const candidatosVotados = {};
 
         function votar(candidato, tipo) {
