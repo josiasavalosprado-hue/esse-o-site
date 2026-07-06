@@ -54,6 +54,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
             margin-bottom: 30px;
+            max-width: 600px;
         }
 
         /* DECORAÇÃO DOS CARDS: Cores destacadas e sombra */
@@ -68,6 +69,7 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.25);
             border-top: 8px solid #206A3A; /* Faixa verde no topo */
             transition: transform 0.3s;
+            box-sizing: border-box;
         }
 
         .card:hover {
@@ -89,6 +91,14 @@
             gap: 15px;
             margin: 20px 0;
             text-align: left;
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 600px) {
+            .conteudo-flex {
+                flex-direction: column;
+                text-align: center;
+            }
         }
 
         /* DECORAÇÃO DA FOTO DO CANDIDATO */
@@ -211,4 +221,25 @@
             </div>
             <div class="container-botoes">
                 <button class="btn-up" onclick="votar('marina', 'Up')">👍 <span id="marinaUp">0</span></button>
-                <button class="btn-down" onclick="votar('marina', 'Down')">👎 <span id="
+                <button class="btn-down" onclick="votar('marina', 'Down')">👎 <span id="marinaDown">0</span></button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function votar(candidato, tipo) {
+            // Monta o ID correto do elemento correspondente (ex: lulaUp, bolsoDown)
+            const idElemento = candidato + tipo;
+            const elemento = document.getElementById(idElemento);
+            
+            if (elemento) {
+                // Pega o valor atual, converte para número, soma 1 e atualiza na tela
+                let votosAtuais = parseInt(elemento.innerText);
+                elemento.innerText = votosAtuais + 1;
+            }
+        }
+    </script>
+
+</body>
+</html>
